@@ -42,7 +42,7 @@ class Quote
 
         begin
             File.foreach(quote_file_path) do |line|
-                if line.include?("==end") || line.nil?
+                if line.downcase.include?("==end") || line.nil?
                     @arr_quotes << quote_str
                     counter += 1 unless quote_str.empty?
                     quote_str = "" # quote_str.clear prevents adding string to array
