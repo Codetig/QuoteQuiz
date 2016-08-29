@@ -1,7 +1,7 @@
 class Quote
     attr_reader :arr_quotes
     def initialize
-        #perhaps use and input file for this
+        #perhaps use an input file for this
         @arr_quotes = [
             "Foo! Bar!", 
             "Do you parse the the words coming out of my mouth.",
@@ -12,6 +12,10 @@ class Quote
 
         @files_read = []
         @quotes_displayed = []
+    end
+
+    def number_of_quotes
+        @arr_quotes.length
     end
     
     def get_quote
@@ -25,6 +29,10 @@ class Quote
         
         msg = @quotes_displayed.empty? ? "\n**That is the last quote.**" : ""
         @arr_quotes[num] + msg
+    end
+
+    def add_quote new_quote
+        @arr_quotes << new_quote
     end
     
     def read_in_more(quote_file_path)

@@ -2,11 +2,16 @@ class Quiz
   attr_reader :hash_quiz
   attr_accessor :ordered
   def initialize
-    @hash_quiz = Hash.new("")
+    # @hash_quiz = Hash.new("")
+    @hash_quiz = {
+        "What is the only even prime?" => "2", 
+        "What is the only even prime's squared?" => "4",
+        "What is the only cube integer less than 10 greater than 1?" => "8"
+        }
 
-    @hash_quiz["What is the only even prime?"] = "2"
-    @hash_quiz["What is the only even prime's squared?"] = "4"
-    @hash_quiz['What is the only cube integer less than 10 greater than 1?'] = "8"
+    # @hash_quiz["What is the only even prime?"] = "2"
+    # @hash_quiz["What is the only even prime's squared?"] = "4"
+    # @hash_quiz['What is the only cube integer less than 10 greater than 1?'] = "8"
 
     @files_read = []
     @quiz_displayed = []
@@ -30,6 +35,14 @@ class Quiz
 
   end
 
+  def number_of_quizzes
+      @hash_quiz.length
+  end
+
+  def add_quiz(question, answer)
+      @hash_quiz[question] = answer
+  end
+
   def read_in_more(path_to_qa)
     return "No file path provided." if path_to_qa.empty?
     return "This file was already added." if @files_read.include?(path_to_qa)
@@ -41,11 +54,11 @@ class Quiz
 
     begin
         File.foreach(path_to_qa) do |line|
-            if line.include?("==question")
+            if line.downcase.include?("==question")
                 is_question = true
-            elsif line.include?("==answer")
+            elsif line.downcase.include?("==answer")
                 is_question = false
-            elsif line.include?("==end")
+            elsif line.downcase.include?("==end")
                 unless question.empty? && answer.empty?
                     @hash_quiz[question] = answer 
                     question = ""
