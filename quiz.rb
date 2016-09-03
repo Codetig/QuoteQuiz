@@ -1,5 +1,5 @@
 class Quiz
-  attr_reader :hash_quiz
+
   attr_accessor :ordered
   def initialize
     # @hash_quiz = Hash.new("")
@@ -16,6 +16,10 @@ class Quiz
     @files_read = []
     @quiz_displayed = []
     @ordered = true
+  end
+
+  def hash_quiz
+      Hash[@hash_quiz]
   end
 
   def get_quiz
@@ -40,7 +44,7 @@ class Quiz
   end
 
   def add_quiz(question, answer)
-      @hash_quiz[question] = answer
+      @hash_quiz[question] = answer unless question.empty? || answer.empty?
   end
 
   def read_in_more(path_to_qa)
@@ -59,8 +63,8 @@ class Quiz
             elsif line.downcase.include?("==answer")
                 is_question = false
             elsif line.downcase.include?("==end")
-                unless question.empty? && answer.empty?
-                    @hash_quiz[question] = answer 
+                unless (question.empty? && answer.empty?)
+                    add_quiz(question, answer)
                     question = ""
                     answer = ""
                     counter += 1

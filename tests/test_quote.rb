@@ -1,4 +1,4 @@
-require_relative 'quote'
+require_relative '../quote'
 require 'minitest/autorun'
 
 class TestQuote < MiniTest::Test
@@ -23,6 +23,6 @@ class TestQuote < MiniTest::Test
     @quote.add_quote('It never rains, it pours!')
     new_num = @quote.number_of_quotes
     
-    assert_equal true, (new_num > initial_num)
+    assert(new_num > initial_num, 'The number of quizzes should be unchanged')
   end
 end

@@ -3,7 +3,6 @@ How many fingers do Rubyists have?
 ==answer
 Ten Fingers
 ==End
-
 ==question
 How many toes do Rubyists have?
 ==answer
