@@ -7,7 +7,6 @@ class TestQuiz < Minitest::Test
   end
 
   def test_default_quiz
-    #puts @quiz.get_quiz
     refute_empty @quiz.get_quiz, "New Quiz instance should have default quizzes"
   end
 
@@ -39,9 +38,7 @@ class TestQuiz < Minitest::Test
 
   def test_read_from_file
     initial_size = @quiz.number_of_quizzes
-    #puts __FILE__.sub(/test_quiz\.rb/, 'sample_test_quiz.txt')
-    #puts @quiz.read_in_more('./sample_test_quiz.txt')
-    puts @quiz.read_in_more(__FILE__.sub(/test_quiz\.rb/, 'sample_test_quiz.txt'))
+    @quiz.read_in_more(__FILE__.sub(/test_quiz\.rb/, 'sample_test_quiz.txt'))
     refute_equal initial_size, @quiz.number_of_quizzes, 'New quizzes added from the given file'
   end
 
